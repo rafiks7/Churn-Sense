@@ -7,6 +7,8 @@ import os
 from openai import OpenAI
 import utils as ut
 
+st.set_page_config(page_title="Churn Sense", page_icon="🏦")
+
 st.markdown("""
     <style>
     div.stButton > button {
@@ -96,7 +98,6 @@ def explain_prediction(probability, input_dict, surname):
   DO NOT say something like: "{surname} has a {probability}% probability of churning. Here is an explanation:" Just go straight into the explanation. The reader DOES NOT have time to waste.
 
   When you are explaining, use actual values from the customer's information, not just general statements. For example: instead of saying "they hold a relatively low number of products", say "they only have 2 products."
-
 
   """
 
@@ -258,12 +259,9 @@ def generate_percentiles(df, input_dict):
   
 
   return percentiles
-  
-  # percentile = (n - 0.5 / N) * 100
 
 
-
-st.title("Customer Churn Prediction")
+st.title("Churn Sense")
 
 df = pd.read_csv("churn.csv")
 
@@ -367,7 +365,6 @@ if selected_customer_option:
     st.markdown(email)
 
     st.markdown("---") 
-    
     st.subheader("API")
 
     st.markdown("""
