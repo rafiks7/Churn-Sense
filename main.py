@@ -339,9 +339,9 @@ if selected_customer_option:
 
   input_df, input_dict, selective_input_df, selective_input_dict = prepare_input(credit_score, location, gender, age, tenure, balance, num_products, has_credit_card, is_active_member, estimated_salary)
 
-  percentiles = generate_percentiles(df, input_dict)
-
   if st.button('Are they churning?', use_container_width=True):
+    percentiles = generate_percentiles(df, input_dict)
+
     with st.spinner("Predicting..."):
       avg_probability = make_predictions(input_df, selective_input_df, selected_customer['Surname'])
 
@@ -376,3 +376,4 @@ if selected_customer_option:
             </a>
         </div>
         """, unsafe_allow_html=True)
+    
