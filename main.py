@@ -365,8 +365,17 @@ if selected_customer_option:
     st.subheader("Personalized Email")
   
     st.markdown(email)
-  
 
-  
-  
+    st.markdown("---") 
+    
+    st.subheader("API")
 
+    st.markdown("""
+        <div style='display: flex; justify-content: center; align-items: center; margin-top: 20px;'>
+            <a href="https://github.com/rafiks7/Churn-ML-Models" target="_blank" 
+            style='background-color: #4CAF50; padding: 10px 20px; color: white; text-align: center; 
+            text-decoration: none; border-radius: 8px; font-size: 18px;'>
+                Use models in your app
+            </a>
+        </div>
+        """, unsafe_allow_html=True)
