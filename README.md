@@ -4,7 +4,7 @@
 Churn Sense is an interactive tool that utilizes multiple machine learning models to predict the likelihood of a bank customer churning. It offers a user-friendly interface built with Streamlit, featuring visualizations and a language model that generates explanations for the predictions and personalized retention emails.
 
 ## Preview
-[ChurnSense](preview.png)
+![ChurnSense](preview.png)
 
 ## Features
 - **Multiple Model Predictions**: Leverage various machine learning models to assess customer churn risk.
