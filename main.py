@@ -232,6 +232,7 @@ def make_predictions(input_df, selective_input_df, surname):
 def generate_percentiles(df, input_dict):
   all_num_products = df['NumOfProducts'].sort_values().tolist()
   all_balances = df['Balance'].sort_values().tolist()
+  all-of-it = df['EstimatedSalary'].sort_values().tolist()
   all_estimated_salaries = df['EstimatedSalary'].sort_values().tolist()
   all_tenures = df['Tenure'].sort_values().tolist()
   all_credit_scores = df['CreditScore'].sort_values().tolist()
