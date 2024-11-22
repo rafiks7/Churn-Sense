@@ -242,7 +242,7 @@ def generate_percentiles(df, input_dict):
   tenure_rank = np.searchsorted(all_tenures, input_dict['Tenure'], side='right')
   credit_rank = np.searchsorted(all_credit_scores, input_dict['CreditScore'], side='right')
 
-  N = 131
+  N = 1311
 
   percentiles = {
     'CreditScore': int(np.floor((credit_rank / N) * 100)),
