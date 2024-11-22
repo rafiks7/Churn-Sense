@@ -236,57 +236,23 @@ def generate_percentiles(df, input_dict):
   all_tenures = df['Tenure'].sort_values().tolist()
   all_credit_scores = df['CreditScore'].sort_values().tolist()
 
-# Simulating input_dict from user input
-input_dict = {
-    'NumOfProducts': random.randint(1, 10),
-    'Balance': random.randint(1000, 50000),
-    'EstimatedSalary': random.randint(30000, 150000),
-    'Tenure': random.randint(1, 20),
-    'CreditScore': random.randint(300, 850)
-}
+  product_rank = np.searchsorted(all_num_products, input_dict['NumOfProducts'], side='right')
+  balance_rank = np.searchsorted(all_balances, input_dict['Balance'], side='right')
+  salary_rank = np.searchsorted(all_estimated_salaries, input_dict['EstimatedSalary'], side='right')
+  tenure_rank = np.searchsorted(all_tenures, input_dict['Tenure'], side='right')
+  credit_rank = np.searchsorted(all_credit_scores, input_dict['CreditScore'], side='right')
 
-# Calculate the rank for each of the input values
-product_rank = np.searchsorted(all_num_products, input_dict['NumOfProducts'], side='right')
-balance_rank = np.searchsorted(all_balances, input_dict['Balance'], side='right')
-salary_rank = np.searchsorted(all_estimated_salaries, input_dict['EstimatedSalary'], side='right')
-tenure_rank = np.searchsorted(all_tenures, input_dict['Tenure'], side='right')
-credit_rank = np.searchsorted(all_credit_scores, input_dict['CreditScore'], side='right')
+  
+  N = 10000
 
-# Total number of data points (for percentile calculation)
-N = len(all_num_products)
-
-# Calculate percentiles based on ranks
-percentiles = {
+  percentiles = {
     'CreditScore': int(np.floor((credit_rank / N) * 100)),
     'Tenure': int(np.floor((tenure_rank / N) * 100)),
     'EstimatedSalary': int(np.floor((salary_rank / N) * 100)),
     'Balance': int(np.floor((balance_rank / N) * 100)),
     'NumOfProducts': int(np.floor((product_rank / N) * 100)),
-}
+  }
 
-# Print out the percentiles and corresponding input data
-print("Input data:", input_dict)
-print("Calculated Percentiles:", percentiles)
-
-# Generating random data to simulate a prediction or calculation based on input percentiles
-predicted_loan_approval = random.choice(['Approved', 'Rejected'])
-predicted_interest_rate = round(random.uniform(3.5, 7.5), 2)  # Random interest rate between 3.5% and 7.5%
-
-# Final decision based on percentiles and random prediction
-if percentiles['CreditScore'] >= 75 and percentiles['Balance'] >= 60:
-    final_decision = f"Loan Application {predicted_loan_approval} with an interest rate of {predicted_interest_rate}%"
-else:
-    final_decision = "Loan Application Rejected due to low credit score or balance."
-
-print("Final Decision:", final_decision)
-
-# Simulate a user's eligibility based on percentile
-eligibility = 'Eligible' if percentiles['NumOfProducts'] > 50 and percentiles['Tenure'] > 60 else 'Not Eligible'
-print("Eligibility Status:", eligibility)
-
-# Calculate random bonus prediction based on salary and tenure
-salary_bonus = int(input_dict['EstimatedSalary'] * (random.uniform(0.05, 0.1)))  # Random bonus between 5% and 10% of salary
-print("Predicted Salary Bonus:", salary_bonus)
 
   fig = ut.create_percentile_chart(percentiles)
   st.plotly_chart(fig,use_container_width=True)
